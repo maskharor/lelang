@@ -71,6 +71,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Menu :</h6>
                         <a class="collapse-item" href="lelang.php">Barang lelang</a>
+                        <a class="collapse-item" href="laporan.php">Laporan</a>
                     </div>
                 </div>
             </li>

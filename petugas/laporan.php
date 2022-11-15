@@ -303,32 +303,22 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
                     <!-- Page Heading -->
-                    <?php
-                        include "../koneksi.php";
-                        $qry_get_barang=mysqli_query($conn, "select * from barang where id = '".$_GET['id']."' ");
-                        $get_barang=mysqli_fetch_array($qry_get_barang);
-                    ?>
                     <h3>Histori lelang</h3>
-                    <h5>Penawaran barang <?=$get_barang['nama_barang']?></h5>
+                    <a href="print.php" class="btn btn-success">Print</a>
                     <table class="table table-hover table-striped">
                         <thead>
                             <tr>
-                                <div class="col-md-4">
-                                    <img src="../foto/<?=$get_barang['foto']?>" class="card-img-top">
-                                </div>
-                            </tr>
-                            <tr>
                                 <th>NO</th>
                                 <th>NAMA PENAWAR</th>
+                                <th>NAMA BARANG</th>
                                 <th>HARGA TAWAR</th>
                                 <th>STATUS</th>
-                                <th>ACTION</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
                                 include "../koneksi.php";
-                                $qry_transaksi=mysqli_query($conn, "select * from transaksi join masyarakat on masyarakat.id_masyarakat=transaksi.id_masyarakat join barang on barang.id='".$_GET['id']."' ");
+                                $qry_transaksi=mysqli_query($conn, "select * from transaksi join masyarakat on masyarakat.id_masyarakat=transaksi.id_masyarakat join barang on barang.id=transaksi.id_barang ");
                                 $no=0;
                                 while($data_transaksi=mysqli_fetch_array($qry_transaksi)){
                                     $no++;
@@ -336,54 +326,9 @@
                                     <tr>
                                         <td><?=$no?></td>
                                         <td><?=$data_transaksi['username']?></td>
+                                        <td><?=$data_transaksi['nama_barang']?></td>
                                         <td><?=$data_transaksi['penawaran_harga']?></td>
                                         <td><?=$data_transaksi['status_lelang']?></td>
-                                        <td>
-                                            <div class="d-grid gap-2 d-md-block">
-                                            <form method="POST">
-                                                <input type="hidden" name="id_transaksi" value="<?=$data_transaksi['id_transaksi']?>">
-                                                <button class="btn btn-primary" type="submit" name="process">PROCESS</button>
-                                               
-                                                <?php
-                                                if(isset($_POST['process'])){
-                                                    $sql="update transaksi set status_lelang = 'process' where id_transaksi = $_POST[id_transaksi]";
-                                                    $query = mysqli_query($conn, $sql);
-                                                    echo "<script>
-                                                            alert('Auction On Process');
-                                                            location.href='history_lelang.php';
-                                                        </script>";      
-                                                }
-                                                ?>
-                                               
-                                                <input type="hidden" name="id_transaksi" value="<?=$data_transaksi['id_transaksi']?>">
-                                                <button class="btn btn-success" type="submit" name="win">WIN</button>
-                                                <?php
-                                                if(isset($_POST['win'])){
-                                                    $sql="update transaksi set status_lelang = 'win' where id_transaksi = $_POST[id_transaksi]";
-                                                    $sql="update barang set status = 'close' where id = $_POST[id]";
-                                                    $query = mysqli_query($conn, $sql);
-                                                    echo "<script>
-                                                            alert('Lelang has Closed');
-                                                            location.href='history_lelang.php';
-                                                        </script>";
-                                                }
-                                                ?>
-
-                                                <input type="hidden" name="id_transaksi" value="<?=$data_transaksi['id_transaksi']?>">
-                                                <button class="btn btn-danger" type="submit" name="lose">LOSE</button>
-                                                </form>
-                                                <?php
-                                                if(isset($_POST['lose'])){
-                                                    $sql="update transaksi set status_lelang = 'lose' where id_transaksi = $_POST[id_transaksi]";
-                                                    $query = mysqli_query($conn, $sql);
-                                                    echo "<script>
-                                                            alert('Lose the auction');
-                                                            location.href='history_lelang.php';
-                                                        </script>";
-                                                }
-                                                ?>
-                                            </div>
-                                            </td>
                                     </tr>
                                 <?php
                                 }
