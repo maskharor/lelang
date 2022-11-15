@@ -62,23 +62,6 @@
                 Addons
             </div>
 
-            <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                    aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-wrench"></i>
-                    <span>Register</span>
-                </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Register account! :</h6>
-                        <a class="collapse-item" href="register_petugas.php">Register Petugas</a>
-                        <a class="collapse-item" href="register_masyarakat.php">Register Masyarakat</a>
-                        <a class="collapse-item" href="tambah_barang.php">Tambah Barang</a>
-                    </div>
-                </div>
-            </li>
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
@@ -90,28 +73,13 @@
                 <div id="collapseMenu" class="collapse" aria-labelledby="headingMenu" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Menu :</h6>
-                        <a class="collapse-item" href="lelang.php">Barang Lelang</a>
-                        <a class="collapse-item" href="tes.php">Transaksi Lelang</a>
+                        <a class="collapse-item" href="data_barang.php">Barang Lelang</a>
                     </div>
                 </div>
             </li>
 
             <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseData"
-                    aria-expanded="true" aria-controls="collapseData">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Data</span>
-                </a>
-                <div id="collapseData" class="collapse" aria-labelledby="headingData" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Menu :</h6>
-                        <a class="collapse-item" href="data_petugas.php">Data Petugas</a>
-                        <a class="collapse-item" href="data_masyarakat.php">Data Masyarakat</a>
-                        <a class="collapse-item" href="data_barang.php">Data Barang</a>
-                    </div>
-                </div>
-            </li>
+            
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">

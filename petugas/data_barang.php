@@ -59,25 +59,7 @@
             <div class="sidebar-heading">
                 Addons
             </div>
-
-            <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                    aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-wrench"></i>
-                    <span>Create</span>
-                </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Create pages! :</h6>
-                        <a class="collapse-item" href="register_petugas.php">Register Petugas</a>
-                        <a class="collapse-item" href="register_masyarakat.php">Register Masyarakat</a>
-                        <a class="collapse-item" href="tambah_barang.php">Tambah Barang</a>
-                    </div>
-                </div>
-            </li>
-
+            
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMenu"
@@ -89,24 +71,6 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Menu :</h6>
                         <a class="collapse-item" href="lelang.php">Barang lelang</a>
-                        <a class="collapse-item" href="data_masyarakat.php">Transaksi Lelang</a>
-                    </div>
-                </div>
-            </li>
-
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseData"
-                    aria-expanded="true" aria-controls="collapseData">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Data</span>
-                </a>
-                <div id="collapseData" class="collapse" aria-labelledby="headingData" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Menu :</h6>
-                        <a class="collapse-item" href="data_petugas.php">Data Petugas</a>
-                        <a class="collapse-item" href="data_masyarakat.php">Data Masyarakat</a>
-                        <a class="collapse-item" href="data_barang.php">Data Barang</a>
                     </div>
                 </div>
             </li>
@@ -383,12 +347,25 @@
                                                         </script>";      
                                                 }
                                                 ?>
-                                               
+                                                
                                                 <input type="hidden" name="id" value="<?=$data_barang['id']?>">
-                                                <!-- <button class="btn btn-danger" type="submit" name="sold">Sold</button> -->
+                                                <button class="btn btn-danger" type="submit" name="close">CLOSE</button>
+                                                <?php
+                                                if(isset($_POST['close'])){
+                                                    $sql="update barang set status = 'close' where id = $_POST[id]";
+                                                    $query = mysqli_query($conn, $sql);
+                                                    echo "<script>
+                                                            alert('Lelang has Closed');
+                                                            location.href='data_barang.php';
+                                                        </script>";      
+                                                }
+                                                ?>
                                                 </form>
-                                                <a href="history_lelang.php?id=<?=$data_barang['id']?>" class="btn btn-danger">Penawaran</a>
-
+                                               <br> 
+                                                <a href="history_lelang.php?id=<?=$data_barang['id']?>" class="btn btn-dark">Penawaran</a>
+                                                
+                                                
+                                                
                                             </div>
                                             </td>
                                         <td style="width:30%;"><img src="../foto/<?=$data_barang['foto']?>" style="width:70%; class="card-img-top"></td>

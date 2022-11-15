@@ -73,7 +73,6 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Menu :</h6>
                         <a class="collapse-item" href="homepage.php">Barang lelang</a>
-                        <a class="collapse-item" href="histori_transaksi.php">Transaksi Lelang</a>
                     </div>
                 </div>
             </li>
@@ -321,6 +320,7 @@
                                 <th>NO</th>
                                 <th>NAMA PENAWAR</th>
                                 <th>HARGA TAWAR</th>
+                                <th>STATUS</th>
                                 <th>ACTION</th>
                             </tr>
                         </thead>
@@ -336,47 +336,48 @@
                                         <td><?=$no?></td>
                                         <td><?=$data_transaksi['username']?></td>
                                         <td><?=$data_transaksi['penawaran_harga']?></td>
+                                        <td><?=$data_transaksi['status_lelang']?></td>
                                         <td>
                                             <div class="d-grid gap-2 d-md-block">
                                             <form method="POST">
-                                                <input type="hidden" name="id" value="<?=$data_transaksi['id']?>">
-                                                <button class="btn btn-primary" type="submit" name="open">Open</button>
+                                                <input type="hidden" name="id_transaksi" value="<?=$data_transaksi['id_transaksi']?>">
+                                                <button class="btn btn-primary" type="submit" name="process">PROCESS</button>
                                                
                                                 <?php
-                                                if(isset($_POST['proses'])){
-                                                    $sql="update barang set status = 'on process' where id = $_POST[id]";
+                                                if(isset($_POST['process'])){
+                                                    $sql="update transaksi set status_lelang = 'process' where id_transaksi = $_POST[id_transaksi]";
                                                     $query = mysqli_query($conn, $sql);
                                                     echo "<script>
                                                             alert('Auction On Process');
-                                                            location.href='data_barang.php';
+                                                            location.href='history_lelang.php';
                                                         </script>";      
                                                 }
                                                 ?>
                                                
-                                                <input type="hidden" name="id" value="<?=$data_barang['id']?>">
-                                                <button class="btn btn-success" type="submit" name="sold">Sold</button>
-                                                </form>
+                                                <input type="hidden" name="id_transaksi" value="<?=$data_transaksi['id_transaksi']?>">
+                                                <button class="btn btn-success" type="submit" name="win">WIN</button>
                                                 <?php
                                                 if(isset($_POST['win'])){
-                                                    $sql="update barang set status = 'Win The Auction' where id = $_POST[id]";
+                                                    $sql="update transaksi set status_lelang = 'win' where id_transaksi = $_POST[id_transaksi]";
+                                                    $sql="update barang set status = 'close' where id = $_POST[id]";
                                                     $query = mysqli_query($conn, $sql);
                                                     echo "<script>
                                                             alert('Lelang has Closed');
-                                                            location.href='data_barang.php';
+                                                            location.href='history_lelang.php';
                                                         </script>";
                                                 }
                                                 ?>
 
-                                                <input type="hidden" name="id" value="<?=$data_barang['id']?>">
-                                                <button class="btn btn-danger" type="lose" name="sold">Sold</button>
+                                                <input type="hidden" name="id_transaksi" value="<?=$data_transaksi['id_transaksi']?>">
+                                                <button class="btn btn-danger" type="submit" name="lose">LOSE</button>
                                                 </form>
                                                 <?php
                                                 if(isset($_POST['lose'])){
-                                                    $sql="update barang set status = 'Win The Auction' where id = $_POST[id]";
+                                                    $sql="update transaksi set status_lelang = 'lose' where id_transaksi = $_POST[id_transaksi]";
                                                     $query = mysqli_query($conn, $sql);
                                                     echo "<script>
-                                                            alert('Lelang has Closed');
-                                                            location.href='data_barang.php';
+                                                            alert('Lose the auction');
+                                                            location.href='history_lelang.php';
                                                         </script>";
                                                 }
                                                 ?>
