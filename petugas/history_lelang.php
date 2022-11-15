@@ -327,7 +327,7 @@
                         <tbody>
                             <?php
                                 include "../koneksi.php";
-                                $qry_transaksi=mysqli_query($conn, "select * from history_lelang join transaksi on transaksi.id_masyarakat=transaksi.id_masyarakat join barang on barang.id='".$_GET['id']."' ");
+                                $qry_transaksi=mysqli_query($conn, "select * from transaksi join masyarakat on masyarakat.id_masyarakat=transaksi.id_masyarakat join barang on barang.id='".$_GET['id']."' ");
                                 $no=0;
                                 while($data_transaksi=mysqli_fetch_array($qry_transaksi)){
                                     $no++;
@@ -339,26 +339,40 @@
                                         <td>
                                             <div class="d-grid gap-2 d-md-block">
                                             <form method="POST">
-                                                <input type="hidden" name="id" value="<?=$data_barang['id']?>">
+                                                <input type="hidden" name="id" value="<?=$data_transaksi['id']?>">
                                                 <button class="btn btn-primary" type="submit" name="open">Open</button>
                                                
                                                 <?php
-                                                if(isset($_POST['open'])){
-                                                    $sql="update barang set status = 'open' where id = $_POST[id]";
+                                                if(isset($_POST['proses'])){
+                                                    $sql="update barang set status = 'on process' where id = $_POST[id]";
                                                     $query = mysqli_query($conn, $sql);
                                                     echo "<script>
-                                                            alert('Lelang has Opened');
+                                                            alert('Auction On Process');
                                                             location.href='data_barang.php';
                                                         </script>";      
                                                 }
                                                 ?>
                                                
                                                 <input type="hidden" name="id" value="<?=$data_barang['id']?>">
-                                                <button class="btn btn-danger" type="submit" name="sold">Sold</button>
+                                                <button class="btn btn-success" type="submit" name="sold">Sold</button>
                                                 </form>
                                                 <?php
-                                                if(isset($_POST['sold'])){
-                                                    $sql="update barang set status = 'sold' where id = $_POST[id]";
+                                                if(isset($_POST['win'])){
+                                                    $sql="update barang set status = 'Win The Auction' where id = $_POST[id]";
+                                                    $query = mysqli_query($conn, $sql);
+                                                    echo "<script>
+                                                            alert('Lelang has Closed');
+                                                            location.href='data_barang.php';
+                                                        </script>";
+                                                }
+                                                ?>
+
+                                                <input type="hidden" name="id" value="<?=$data_barang['id']?>">
+                                                <button class="btn btn-danger" type="lose" name="sold">Sold</button>
+                                                </form>
+                                                <?php
+                                                if(isset($_POST['lose'])){
+                                                    $sql="update barang set status = 'Win The Auction' where id = $_POST[id]";
                                                     $query = mysqli_query($conn, $sql);
                                                     echo "<script>
                                                             alert('Lelang has Closed');
