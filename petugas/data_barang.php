@@ -51,7 +51,7 @@
                     <span>Dashboard</span></a>
             </li>
 
-            <!-- Divider -->
+            <!-- Divider --> 
             <hr class="sidebar-divider">
 
         
