@@ -11,7 +11,7 @@
         else{
             include "../koneksi.php";
             $qry_get_barang=mysqli_query($conn, "select *from barang where id = '".$_GET['id']."' ");
-            $data_barang=mysqli_fetch_array($qry_get_barang);
+            $data_barang=mysqli_fetch_array($qry_get_barang);   
             
             if($harga_tawar <= $data_barang['harga_awal']){
                 echo "<script>

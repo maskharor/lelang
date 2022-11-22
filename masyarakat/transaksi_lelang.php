@@ -1,5 +1,6 @@
 <?php
     include "../status_login_masyarakat.php";
+    include "status_barang.php"
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -313,7 +314,7 @@
                             <img src="../foto/<?=$data_barang['foto']?>" class="card-img-top">
                         </div>
                         <div class="col-md-8">
-                            <form action="proses_transaksi.php?id=<?=$data_barang['id']?>" method="post">
+                            <form action="prosestransaksi.php?id=<?=$data_barang['id']?>" method="post">
                                 <table class="table table-hover table-striped">
                                     <thead>
                                         <tr>

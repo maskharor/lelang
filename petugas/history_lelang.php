@@ -350,7 +350,7 @@
                                                     $query = mysqli_query($conn, $sql);
                                                     echo "<script>
                                                             alert('Auction On Process');
-                                                            location.href='history_lelang.php';
+                                                            location.href='data_barang.php';
                                                         </script>";      
                                                 }
                                                 ?>
@@ -360,11 +360,10 @@
                                                 <?php
                                                 if(isset($_POST['win'])){
                                                     $sql="update transaksi set status_lelang = 'win' where id_transaksi = $_POST[id_transaksi]";
-                                                    $sql="update barang set status = 'close' where id = $_POST[id]";
                                                     $query = mysqli_query($conn, $sql);
                                                     echo "<script>
                                                             alert('Lelang has Closed');
-                                                            location.href='history_lelang.php';
+                                                            location.href='data_barang.php';
                                                         </script>";
                                                 }
                                                 ?>
@@ -378,7 +377,7 @@
                                                     $query = mysqli_query($conn, $sql);
                                                     echo "<script>
                                                             alert('Lose the auction');
-                                                            location.href='history_lelang.php';
+                                                            location.href='data_barang.php';
                                                         </script>";
                                                 }
                                                 ?>

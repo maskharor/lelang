@@ -70,7 +70,7 @@
                 <div id="collapseMenu" class="collapse" aria-labelledby="headingMenu" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Menu :</h6>
-                        <a class="collapse-item" href="lelang.php">Barang lelang</a>
+                        <a class="collapse-item" href="data_barang.php">Barang lelang</a>
                         <a class="collapse-item" href="laporan.php">Laporan</a>
                     </div>
                 </div>
@@ -342,6 +342,7 @@
                                                 if(isset($_POST['open'])){
                                                     $sql="update barang set status = 'open' where id = $_POST[id]";
                                                     $query = mysqli_query($conn, $sql);
+                                                    $_SESSION['status_barang'] = true;
                                                     echo "<script>
                                                             alert('Lelang has Opened');
                                                             location.href='data_barang.php';
@@ -355,6 +356,7 @@
                                                 if(isset($_POST['close'])){
                                                     $sql="update barang set status = 'close' where id = $_POST[id]";
                                                     $query = mysqli_query($conn, $sql);
+                                                    $_SESSION['status_barang'] = false;
                                                     echo "<script>
                                                             alert('Lelang has Closed');
                                                             location.href='data_barang.php';

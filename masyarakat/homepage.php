@@ -314,6 +314,7 @@
                                 <div class="card-body">
                                     <h5 class="card-title"><?=$dt_barang['nama_barang']?></h5>
                                     <p class="card-text"><?=substr($dt_barang['deskripsi'], 0,20)?></p>
+                                    <!-- <a href="proses_tawar.php" class="btn btn-primary">Tawar</a> -->
                                     <a href="transaksi_lelang.php?id=<?=$dt_barang['id']?>" class="btn btn-primary">Tawar</a>
                                 </div>
                             </div>
